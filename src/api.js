@@ -13,7 +13,6 @@ export default {
         params.append('password', md5(password));
         const data = await this.axios.post('/users/login', params)
         const status = data.data.status;
-        console.log(data)
         if (status == 'sucesso') {
             localStorage.setItem('estagiariosSession', data.data.dados[0].TOKEN)
             return true;
@@ -27,7 +26,6 @@ export default {
         params.append('token', token);
         const data = await this.axios.post('/users/getSession', params)
         const status = data.data.status;
-        console.log(data)
         if (status == 'sucesso') {
             return data.data.dados[0];
         } else {
@@ -57,7 +55,6 @@ export default {
         params.append('data', date);
         const data = await this.axios.post('/apontamentos/getApontamento', params)
         const status = data.data.status;
-        console.log(data)
         if (status == 'sucesso') {
             return data.data.dados[0];
         } else {
@@ -74,9 +71,24 @@ export default {
         params.append('token', token);
         const data = await this.axios.post('/apontamentos/setApontamento', params)
         const status = data.data.status;
-        console.log(data)
         if (status == 'sucesso') {
+            alert('Apontamento Realizado com sucesso!');
             return data.data.dados[0];
+
+        } else {
+            alert(data.data.dados);
+            return false;
+        }
+    },
+
+    async getHistorico(token) {
+        const params = new URLSearchParams();
+        params.append('token', token);
+        // params.append('data', date);
+        const data = await this.axios.post('/apontamentos/historicoApontamento', params)
+        const status = data.data.status;
+        if (status == 'sucesso') {
+            return data.data.dados;
         } else {
             alert(data.data.dados);
             return false;

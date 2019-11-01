@@ -67,7 +67,7 @@ export default class LoginPage extends React.Component {
                     e.preventDefault()
                     const { date, chegada, almoco, saida } = e.target.elements;
                     const apontamento = await api.setApontamento(localStorage.getItem('estagiariosSession'), date.value, chegada.value, almoco.value, saida.value)
-                    alert('Apontamento Realizado com sucesso!');
+
                 }}>
                     <div className="logo">Apontar Hora</div>
                     <div className="form-group">

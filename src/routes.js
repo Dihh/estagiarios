@@ -14,7 +14,6 @@ export default () => (
             <Route exact path="/cadastro" component={CadastroPage} />
             <Route exact path="/main" component={MainPage} />
             <Route exact path="/historico" component={Historico} />
-
         </Switch>
     </BrowserRouter>
 )
