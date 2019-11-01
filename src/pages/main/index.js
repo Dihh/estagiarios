@@ -4,6 +4,7 @@ import './style.css';
 import { Link, Redirect } from 'react-router-dom'
 import api from '../../api'
 import '../../../node_modules/font-awesome/css/font-awesome.min.css'
+import HeadComponent from '../../components/headComponent'
 
 export default class LoginPage extends React.Component {
     state = {
@@ -45,22 +46,9 @@ export default class LoginPage extends React.Component {
     render() {
 
         return <div className="content">
+            {this.renderRedirect()}
             <div className="content-bg">
-                <div className="nav-button">
-                    {this.renderRedirect()}
-                </div>
-                <div className="nav-user">
-                    <div className="user-img">
-                        <div className="img"></div>
-                    </div>
-                    <div className="user-name">
-                        {this.state.user.NOME}
-                    </div>
-                    <div className="user-logOut">
-                        <Link to="./"><i className="fa fa-sign-out"></i></Link>
-                    </div>
-                </div>
-
+                <HeadComponent nome={this.state.user.NOME} />
             </div>
             <div className="content-form">
                 <form onSubmit={async e => {
