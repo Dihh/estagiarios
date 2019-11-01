@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 import './style.css';
 
 export default class LoginPage extends React.Component {
 
-    onSubmit = () => {
+    Submit = () => {
         console.log('here')
     }
 
@@ -16,9 +17,15 @@ export default class LoginPage extends React.Component {
             <div className="content-form">
                 <form onSubmit={e => {
                     e.preventDefault()
-                    const { user, password } = e.target.elements
+                    const { nome, user, password } = e.target.elements
+                    console.log(nome.value, user.value, password.value)
+                    this.Submit()
                 }}>
-                    <span className="logo">Login</span>
+                    <div className="logo">Cadastro</div>
+                    <div className="form-group">
+                        <label htmlFor="nome">Nome:</label>
+                        <input type="text" id="nome" className="form-control" ></input>
+                    </div>
                     <div className="form-group">
                         <label htmlFor="user">Usuário:</label>
                         <input type="text" id="user" className="form-control" ></input>
@@ -28,7 +35,7 @@ export default class LoginPage extends React.Component {
                         <input type="password" id="password" className="form-control" ></input>
                     </div>
                     <div className="div-btn">
-                        <button type="button" className="btn btn-info">Cadastro</button>
+                        <Link to="./"><button type="button" className="btn btn-info">Voltar</button></Link>
                         <button type="submit" className="btn btn-primary">Enviar</button>
 
                     </div>

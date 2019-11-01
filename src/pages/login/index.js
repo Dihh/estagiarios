@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './style.css';
+import { Link } from 'react-router-dom'
 
 export default class LoginPage extends React.Component {
 
@@ -18,7 +19,7 @@ export default class LoginPage extends React.Component {
                     e.preventDefault()
                     const { user, password } = e.target.elements
                 }}>
-                    <span className="logo">Login</span>
+                    <div className="logo">Login</div>
                     <div className="form-group">
                         <label htmlFor="user">Usuário:</label>
                         <input type="text" id="user" className="form-control" ></input>
@@ -28,8 +29,8 @@ export default class LoginPage extends React.Component {
                         <input type="password" id="password" className="form-control" ></input>
                     </div>
                     <div className="div-btn">
-                        <button type="button" className="btn btn-info">Cadastro</button>
-                        <button type="submit" className="btn btn-primary">Enviar</button>
+                        <Link to="./cadastro"><button type="button" className="btn btn-info">Cadastro</button></Link>
+                        <Link to="./main"><button type="submit" className="btn btn-primary">Enviar</button></Link>
 
                     </div>
                 </form>

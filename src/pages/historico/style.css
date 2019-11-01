@@ -39,3 +39,30 @@
     margin-bottom: 15px;
     text-align: center;
 }
+
+.table{
+    width: 100%;
+    padding: 10px;
+}
+
+.table-historico{
+    display: flex;
+    flex-direction: column;
+}
+
+.row{
+    display: flex;  
+    justify-content: space-between;
+    
+}
+.row div{
+    border: solid 1px #ddd;
+    width: 100%;
+    text-align: center;
+}
+
+.user-logOut a{
+    cursor: pointer;
+    font-size: 25px;
+    color: #fff;
+}
