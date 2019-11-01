@@ -1,12 +1,18 @@
 import React from 'react';
 
 import './style.css';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import api from '../../api';
 
 export default class LoginPage extends React.Component {
 
-    onSubmit = () => {
-        console.log('here')
+    state = {
+        redirect: false
+    }
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='./main' />
+        }
     }
 
     render() {
@@ -15,10 +21,17 @@ export default class LoginPage extends React.Component {
             <div className="content-bg"></div>
 
             <div className="content-form">
-                <form onSubmit={e => {
+                <form onSubmit={async e => {
                     e.preventDefault()
-                    const { user, password } = e.target.elements
+                    const { user, password } = e.target.elements;
+                    const ret = await api.login(user.value, password.value)
+                    if (ret) {
+                        this.setState({
+                            redirect: true
+                        })
+                    }
                 }}>
+                    {this.renderRedirect()}
                     <div className="logo">Login</div>
                     <div className="form-group">
                         <label htmlFor="user">Usuário:</label>
@@ -30,7 +43,7 @@ export default class LoginPage extends React.Component {
                     </div>
                     <div className="div-btn">
                         <Link to="./cadastro"><button type="button" className="btn btn-info">Cadastro</button></Link>
-                        <Link to="./main"><button type="submit" className="btn btn-primary">Enviar</button></Link>
+                        <button type="submit" className="btn btn-primary">Enviar</button>
 
                     </div>
                 </form>

@@ -1,26 +1,34 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import api from '../../api'
 
 import './style.css';
 
 export default class LoginPage extends React.Component {
-
-    Submit = () => {
-        console.log('here')
+    state = {
+        redirect: false
     }
-
+    renderRedirect = () => {
+        if (this.state.redirect) {
+            return <Redirect to='./' />
+        }
+    }
     render() {
-
         return <div className="content">
             <div className="content-bg"></div>
 
             <div className="content-form">
-                <form onSubmit={e => {
+                <form onSubmit={async e => {
                     e.preventDefault()
-                    const { nome, user, password } = e.target.elements
-                    console.log(nome.value, user.value, password.value)
-                    this.Submit()
+                    const { nome, user, password } = e.target.elements;
+                    const ret = await api.cadastro(nome.value, user.value, password.value)
+                    if (ret) {
+                        this.setState({
+                            redirect: true
+                        })
+                    }
                 }}>
+                    {this.renderRedirect()}
                     <div className="logo">Cadastro</div>
                     <div className="form-group">
                         <label htmlFor="nome">Nome:</label>
